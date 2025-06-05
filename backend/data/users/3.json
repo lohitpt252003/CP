@@ -1,0 +1,14 @@
+{
+  "id": 3,
+  "username": "name3",
+  "email": "email3@example.com",
+  "password": "pass3",
+  "registered_on": "2025-06-04T10:00:00Z",
+  "submissions": [],
+  "stats": {
+    "total_submissions": 0,
+    "accepted": 0,
+    "wrong_answers": 0,
+    "languages_used": []
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "submission_id": 1,
+  "user_id": 1,
+  "problem_id": 1,
+  "language": "cpp",
+  "code": "#include <bits/stdc++.h>\nusing namespace std;\nint main() { cout << \"Hello World\"; return 0; }",
+  "verdict": "WA",
+  "timestamp": "2025-06-04T15:30:00Z"
+}
