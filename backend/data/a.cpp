@@ -33,18 +33,42 @@ int longestPalinSubseq(string A)
 
 
 
+int f(int n) {
+    long long MOD = 1e9 + 7;
+    vector<long long> F(4);
+    F[0] = 0;
+    F[1] = 1;
+    F[2] = 2;
+    F[3] = 3;
+    // int n;
+    // cin >> n;
+
+    if (n < 4) {
+        // cout << F[n] % MOD << endl;
+        return F[n] % MOD;
+    }
+
+    vector<long long> dp(n + 1);
+    for (int i = 0; i < 4; i++) dp[i] = F[i];
+
+    for (int i = 4; i <= n; i++) {
+        dp[i] = (((dp[i - 1] + dp[i - 2]) % MOD + dp[i - 3]) % MOD + dp[i - 4]) % MOD;
+    }
+
+    return dp[n] % MOD;
+}
 
 
 int main() {
-    int t = 5;
+    int t = 1;
     srand(time(NULL));
 
     vector<vector<ll>> arr;
     vector<int> nums;
 
     for (int i = 0 ; i < t; i++) {
-        // int n = rand() % 1000 + 1;
-        int n = 1000;
+        // int n = rand() % 1000000 + 1;
+        int n = 1000000;
         nums.push_back(n);
     }
 
@@ -94,33 +118,34 @@ int main() {
 
 
 
-    int i = 30;
+    int i = 15;
     int ind = 0;
-    for (auto a : strings) {
+    for (auto a : nums) {
         // cout << "Test case " << i + 1 << ": ";
-        string input = "problems/testcases/4/" + to_string(i + 1) + ".in";
-        string output = "problems/testcases/4/" + to_string(i + 1) + ".out";
+        string input = "problems/testcases/2/" + to_string(i + 1) + ".in";
+        string output = "problems/testcases/2/" + to_string(i + 1) + ".out";
         cout << "=== Writing testcase " << i + 1 << " ===" << endl;
         cout << "Input file: " << input << ", Output file: " << output << endl;
-        cout << a.size() << endl << endl;
+        // cout << a.size() << endl << endl;
+        cout << a << endl;
         ofstream inputFile(input);
         ofstream outputFile(output);
         if (inputFile.is_open() && outputFile.is_open()) {
-            inputFile << a.size() << endl;
-            for (int j = 0; j < a.size(); j++) {
-                inputFile << a[j];
-            }
+            inputFile << a << endl;
+            // for (int j = 0; j < a.size(); j++) {
+            //     inputFile << a[j];
+            // }
             inputFile << endl;
             
-            int result = longestPalinSubseq(a);
+            int result = f(a);
             outputFile << result << endl;
             
             inputFile.close();
             outputFile.close();
-            if (a.size() != nums[ind]) {
-                cout << "SIZE DIDN'T MATCH \n";
-                return 0;
-            }
+            // if (a.size() != nums[ind]) {
+            //     cout << "SIZE DIDN'T MATCH \n";
+            //     return 0;
+            // }
         }
         else {
             cout << "Error opening file(s) for test case " << i + 1 << endl;
