@@ -19,7 +19,7 @@ function Submissions() {
     setUser_id(_user_id);
     console.log("User ID:", _user_id);
 
-    axios.get(`http://localhost:5000/submissions/${_user_id}`)
+    axios.get(`http://172.29.154.15:5000/submissions/${_user_id}`)
       .then(res => setSubmissions(res.data))
       .catch(err => console.error("Failed to fetch submissions", err));
   }, []);

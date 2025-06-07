@@ -1,12 +1,11 @@
 {
   "id": 1,
-  "username": "Priyanshi",
+  "username": "Lohit",
   "email": "email1@example.com",
-  "password": "informal_user",
+  "password": "1234",
   "registered_on": "2025-06-04T10:00:00Z",
   "submissions": [
-    9682415848,
-    3014165507
+    
   ],
   "stats": {
     "total_submissions": 0,

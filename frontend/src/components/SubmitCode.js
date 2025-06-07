@@ -20,7 +20,7 @@ function SubmitCode() {
       console.error("User ID not found in localStorage");
       window.location.href = '/';
     }
-    axios.get('http://localhost:5000/problems')
+    axios.get('http://172.29.154.15:5000/problems')
       .then(res => setProblems(res.data))
       .catch(err => console.error("Failed to fetch problems", err));
   }, []);
@@ -29,7 +29,7 @@ function SubmitCode() {
     // const user_id = localStorage.getItem('user_id');
     setResponse("Solution submitted, please wait for the result...");
     try {
-      const res = await axios.post('http://localhost:5000/submit', {
+      const res = await axios.post('http://172.29.154.15:5000/submit', {
         problem_id: problemId,
         lang : language,
         code : code,

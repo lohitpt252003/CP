@@ -5,14 +5,18 @@ import axios from 'axios';
 // Helper component to render multiline text with line breaks
 function MultilineText({ text }) {
     const [user_id, setUser_id] = useState(-1);
-    const _user_id = localStorage.getItem('user_id');
-    if (_user_id) {
-      setUser_id(parseInt(_user_id));
-    }
-    else {
-      console.error("User ID not found in localStorage");
-      window.location.href = '/';
-    }
+    useEffect(() => {
+    
+      const _user_id = localStorage.getItem('user_id');
+      if (_user_id) {
+        setUser_id(parseInt(_user_id));
+      }
+      else {
+        console.error("User ID not found in localStorage");
+        window.location.href = '/';
+      }
+    }, [])
+    
   return (
     <>
       {text.split('\n').map((line, idx) => (
@@ -32,7 +36,7 @@ function ProblemDetails() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/problem/${id}`)
+      .get(`http://172.29.154.15:5000/problem/${id}`)
       .then((res) => {
         setProblem(res.data);
         setError(null);

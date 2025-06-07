@@ -4,18 +4,18 @@ import axios from 'axios';
 
 function ProblemList() {
   const [user_id, setUser_id] = useState(-1);
-      const _user_id = localStorage.getItem('user_id');
-      if (_user_id) {
-        setUser_id(parseInt(_user_id));
-      }
-      else {
-        console.error("User ID not found in localStorage");
-        window.location.href = '/';
-      }
   const [problems, setProblems] = useState([]);
-
+  
   useEffect(() => {
-    axios.get('http://localhost:5000/problems')
+    const _user_id = localStorage.getItem('user_id');
+    if (_user_id) {
+      setUser_id(parseInt(_user_id));
+    }
+    else {
+      console.error("User ID not found in localStorage");
+      window.location.href = '/';
+    }
+    axios.get('http://172.29.154.15:5000/problems')
       .then(res => setProblems(res.data))
       .catch(err => console.error(err));
   }, []);
