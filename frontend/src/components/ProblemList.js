@@ -1,32 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Header from './Header';
+import './ProblemList.css';
 
 function ProblemList() {
   const [user_id, setUser_id] = useState(-1);
   const [problems, setProblems] = useState([]);
-  
+
   useEffect(() => {
     const _user_id = localStorage.getItem('user_id');
     if (_user_id) {
       setUser_id(parseInt(_user_id));
-    }
-    else {
+    } else {
       console.error("User ID not found in localStorage");
       window.location.href = '/';
     }
-    axios.get('http://172.29.154.15:5000/problems')
+
+    const url = process.env.REACT_APP_BACKEND_IP || "http://localhost:5000";
+    axios.get(`${url}/problems`)
       .then(res => setProblems(res.data))
       .catch(err => console.error(err));
   }, []);
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h2>All Problems</h2>
-      <ul>
+    <div className="ProblemList-container">
+      <Header />
+      <h2 className="ProblemList-title">🧩 All Problems</h2>
+      <ul className="ProblemList-list">
         {problems.map(p => (
-          <li key={p.id}>
-            <Link to={`/problem/${p.id}`}>{p.title}</Link>
+          <li key={p.id} className="ProblemList-item">
+            <Link to={`/problem/${p.id}`} className="ProblemList-link">{p.title}</Link>
           </li>
         ))}
       </ul>

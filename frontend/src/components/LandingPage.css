@@ -1,0 +1,39 @@
+.LandingPage-container {
+  padding: 40px;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #fceabb, #f8b500);
+  min-height: 100vh;
+  animation: LandingPage-fadeIn 0.8s ease-in-out;
+}
+
+.LandingPage-welcome {
+  font-size: 32px;
+  color: #333;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: LandingPage-slideUp 1s ease-in-out;
+}
+
+@keyframes LandingPage-fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes LandingPage-slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,59 @@
+.ProblemList-container {
+  padding: 30px 40px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.ProblemList-title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 28px;
+  animation: ProblemList-fadeIn 0.8s ease-in-out;
+}
+
+.ProblemList-list {
+  list-style: none;
+  padding: 0;
+  max-width: 800px;
+  margin: auto;
+}
+
+.ProblemList-item {
+  margin: 12px 0;
+  padding: 12px 18px;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.ProblemList-item:hover {
+  background-color: #e3f2fd;
+  transform: scale(1.02);
+}
+
+.ProblemList-link {
+  text-decoration: none;
+  color: #007bff;
+  font-size: 18px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.ProblemList-link:hover {
+  color: #0056b3;
+}
+
+/* Animation */
+@keyframes ProblemList-fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

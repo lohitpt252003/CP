@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
+import Header from './Header';
 
 // Helper component to render multiline text with line breaks
 function MultilineText({ text }) {
@@ -35,8 +36,9 @@ function ProblemDetails() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    const url = process.env.REACT_APP_BACKEND_IP || "https://localhost:5000";
     axios
-      .get(`http://172.29.154.15:5000/problem/${id}`)
+      .get(`${url}/problem/${id}`)
       .then((res) => {
         setProblem(res.data);
         setError(null);
@@ -53,6 +55,7 @@ function ProblemDetails() {
 
   return (
     <div style={{ padding: '20px' }}>
+      <Header />
       <Link to="/index">← Back to List</Link>
       <h2>{problem.title}</h2>
 

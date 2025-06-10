@@ -8,7 +8,11 @@ function Login({ onLogin }) {
 
   const handleLogin = async () => {
     try {
-      const res = await fetch("http://172.29.154.15:5000/login", {
+      const url = process.env.REACT_APP_BACKEND_IP || "https://localhost:5000";
+      // console.log(url);
+      console.log("Backend URL:", process.env.REACT_APP_BACKEND_IP);
+      
+      const res = await fetch(`${url}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password })

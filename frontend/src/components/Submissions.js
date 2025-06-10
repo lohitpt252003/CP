@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Header from './Header';
 
 function Submissions() {
   const [submissions, setSubmissions] = useState([]);
@@ -18,8 +19,8 @@ function Submissions() {
     setuser(_user);
     setUser_id(_user_id);
     console.log("User ID:", _user_id);
-
-    axios.get(`http://172.29.154.15:5000/submissions/${_user_id}`)
+    const url = process.env.REACT_APP_BACKEND_IP || "https://localhost:5000";
+    axios.get(`${url}/submissions/${_user_id}`)
       .then(res => setSubmissions(res.data))
       .catch(err => console.error("Failed to fetch submissions", err));
   }, []);
@@ -28,6 +29,7 @@ function Submissions() {
 
   return (
     <div style={{ padding: '20px' }}>
+      <Header />
       <Link to="/index">← Back to Home</Link>
       <h2>All Submissions</h2>
       {submissions.length === 0 ? (
@@ -48,11 +50,11 @@ function Submissions() {
               <tr key={index}>
                 <td>{sub.submission_id}</td>
                 <td>{sub.problem_id}</td>
-                <td>{sub.verdict}</td>
+                <td>{sub.status}</td>
                 <td>{sub.language}</td>
                 <td>
                   <pre style={{ whiteSpace: 'pre-wrap', maxHeight: '150px', overflowY: 'auto' }}>
-                    {sub.code.slice(0, 300)}{sub.code.length > 300 ? '...' : ''}
+                    {sub.code}
                   </pre>
                 </td>
               </tr>

@@ -1,0 +1,17 @@
+.Logout-container {
+  text-align: center;
+  margin-top: 100px;
+  font-family: 'Segoe UI', sans-serif;
+  animation: Logout-fadeIn 0.6s ease-in;
+}
+
+@keyframes Logout-fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Header from './Header';
 
 function SubmitCode() {
   const [problemId, setProblemId] = useState('');
@@ -20,7 +21,8 @@ function SubmitCode() {
       console.error("User ID not found in localStorage");
       window.location.href = '/';
     }
-    axios.get('http://172.29.154.15:5000/problems')
+    const url = process.env.REACT_APP_BACKEND_IP || "https://localhost:5000";
+    axios.get(`${url}/problems`)
       .then(res => setProblems(res.data))
       .catch(err => console.error("Failed to fetch problems", err));
   }, []);
@@ -29,7 +31,8 @@ function SubmitCode() {
     // const user_id = localStorage.getItem('user_id');
     setResponse("Solution submitted, please wait for the result...");
     try {
-      const res = await axios.post('http://172.29.154.15:5000/submit', {
+      const url = process.env.REACT_APP_BACKEND_IP || "https://localhost:5000";
+      const res = await axios.post(`${url}/submit`, {
         problem_id: problemId,
         lang : language,
         code : code,
@@ -58,6 +61,7 @@ function SubmitCode() {
 
   return (
     <div style={{ padding: '20px' }}>
+      <Header />
       <Link to="/index">← Back to Home</Link>
       <h2>Submit Code</h2>
 
