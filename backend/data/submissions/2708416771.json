@@ -1,0 +1,17 @@
+{
+  "submission_id": 2708416771,
+  "problem_id": 1,
+  "user_id": 1,
+  "language": "python",
+  "code": "def min_coins_required(coins, amount):\n    # Initialize a DP array with size amount+1 and fill it with a large number (amount+1)\n    dp = [amount + 1] * (amount + 1)\n    dp[0] = 0  # Base case: 0 coins are needed to make amount 0\n\n    # Build up the solution\n    for coin in coins:\n        for i in range(coin, amount + 1):\n            dp[i] = min(dp[i], dp[i - coin] + 1)\n\n    # If dp[amount] is still amount+1, it's not possible to form the amount\n    return dp[amount] if dp[amount] != amount + 1 else -1\n\n# Input reading\nN = int(input())\ncoins = list(map(int, input().split()))\namount = int(input())\n\n# Output the result\nprint(min_coins_required(coins, amount))\n",
+  "status": "Wrong Answer",
+  "message": "Testcase 1 failed.\nExpected: 9\nGot: Language 'python' not supported.",
+  "logs": [
+    {
+      "testcase": 1,
+      "input": "2 30\n1 8",
+      "expected": "9",
+      "output": "Language 'python' not supported."
+    }
+  ]
+}

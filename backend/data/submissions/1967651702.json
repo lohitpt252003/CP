@@ -1,0 +1,65 @@
+{
+  "submission_id": 1967651702,
+  "problem_id": 1,
+  "user_id": 1,
+  "language": "cpp",
+  "code": "#include<iostream>\n#include<vector>\n#include<algorithm>\n\nusing namespace std;\nint sum = 0;\nint cnt = 0;\n\nint f(int amount, int i, vector<int> arr){\n    if(i == -1) return -1;\n    \n   \n    // for(int j = i; j>=0; j-- ){\n    //     while(amount > sum + arr[j]){\n    //         // sum += sum<amount? arr[j]:f(amount, i-1, arr);\n    //         sum += arr[i];\n    //         cnt++;\n    //     }\n        \n    // }\n    if(sum + arr[i] <= amount) {\n        sum += arr[i];\n        cnt++;\n        f(amount, i, arr);\n    }         \n    else f(amount, i-1, arr);\n\n    if(sum == amount) return cnt;\n\n\n    // sum += sum+arr[i] <= amount? arr[i] : f(amount, i-1, arr);\n   return cnt;     \n}\n\nint main(){\n    int n;\n    cin>>n;\n\n    int amount;\n    cin>>amount;\n\n    vector<int> arr(n);\n    for(int i = 0; i<n; i++){\n        int x;\n        cin>>x;\n        arr[i] = x;\n    }\n    sort(arr.begin(), arr.end());\n\n    vector<int> d(n);\n    for(int j = arr.size()-1; j>=0; j--){\n        int ans = f(amount, j, arr);\n        d[j] = ans;\n\n    }\n\n    int p = *min_element(d.begin(), d.end());\n    cout<<p;\n\n    return 0;\n}",
+  "status": "Wrong Answer",
+  "message": "Testcase 9 failed.\nExpected: 11\nGot: 12",
+  "logs": [
+    {
+      "testcase": 1,
+      "input": "2 30\n1 8",
+      "expected": "9",
+      "output": "9"
+    },
+    {
+      "testcase": 2,
+      "input": "6 19\n1 2 4 9 1 9",
+      "expected": "3",
+      "output": "3"
+    },
+    {
+      "testcase": 3,
+      "input": "59 194\n7 2 10 4 4 8 2 10 9 2 7 6 3 10 7 9 5 8 2 9 1 6 6 2 3 8 2 1 10 4 6 2 4 3 9 5 5 1 9 6 1 10 5 1 3 8 7 6 8 6 5 6 2 6 7 4 10 4 5",
+      "expected": "20",
+      "output": "20"
+    },
+    {
+      "testcase": 4,
+      "input": "96 143\n9 2 1 4 8 3 1 3 9 3 2 7 10 5 7 8 10 4 5 3 9 4 5 6 3 4 6 1 8 4 5 6 8 3 9 4 6 6 2 7 8 6 5 7 6 1 5 3 1 4 1 1 8 9 8 7 4 6 8 3 4 3 4 1 1 5 5 5 10 7 8 8 2 5 4 10 5 3 6 10 8 1 8 4 1 4 6 1 6 6 6 1 5 5 8 3",
+      "expected": "15",
+      "output": "15"
+    },
+    {
+      "testcase": 5,
+      "input": "9 780\n4 4 7 4 7 10 5 9 10",
+      "expected": "78",
+      "output": "78"
+    },
+    {
+      "testcase": 6,
+      "input": "2 603\n1 2",
+      "expected": "302",
+      "output": "302"
+    },
+    {
+      "testcase": 7,
+      "input": "32 584\n5 2 7 1 2 9 9 2 6 1 5 3 5 5 7 3 5 2 10 7 9 1 2 4 4 6 2 6 6 9 10 5",
+      "expected": "59",
+      "output": "59"
+    },
+    {
+      "testcase": 8,
+      "input": "19 691\n10 7 6 6 7 2 2 4 10 3 1 1 4 6 7 8 2 4 1",
+      "expected": "70",
+      "output": "70"
+    },
+    {
+      "testcase": 9,
+      "input": "5 107\n10 9 5 2 3",
+      "expected": "11",
+      "output": "12"
+    }
+  ]
+}

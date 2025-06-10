@@ -1,0 +1,17 @@
+{
+  "submission_id": 3360709850,
+  "problem_id": 5,
+  "user_id": 2,
+  "language": "cpp",
+  "code": "#include<iostream>\n#include<vector>\nusing namespace std;\n\nvector<vector<long long int> > multiply(vector<vector<int> > a, vector<vector<int> > b , long long mod){\n    vector<vector<long long int> > c(a.size(), vector<long long int> (b.back().size()));\n    for(int i = 0; i<a.size(); i++){\n        for(int j = 0; j<b.back().size(); j++){\n            c[i][j] = 0;\n            for(int k = 0; k<b.size(); k++){\n                c[i][j] += (a[i][k] * b[k][j]) % mod; \n            }\n        }\n    }\n    return c;\n}\n\nint main(){\n    int a,b;\n    cin>>a>>b;\n    vector<vector<int> > ab (a, vector<int>(b));\n    for(int i = 0; i<a; i++){\n        for(int j = 0; j<b; j++){\n            int x;\n            cin>>x;\n            ab[i][j] = x;\n\n        }\n    }\n    int c,d;\n    cin>>c>>d;\n    vector<vector<int> > cd (c, vector<int>(d));\n    for(int i = 0; i<c; i++){\n        for(int j = 0; j<d; j++){\n            int x;\n            cin>>x;\n            cd[i][j] = x;\n\n        }\n    }\n\n    vector<vector<long long int> > ans ;\n    ans =  multiply(ab, cd, 1e9+7);\n\n    for(int i = 0; i<ab.size(); i++){\n        for(int j = 0; j<cd.back().size(); j++){\n            cout<< ans[i][j]<<' ';\n            \n        }\n        cout<<endl;\n\n    }\n    \n\n\n\n    return 0;\n}",
+  "status": "Wrong Answer",
+  "message": "Testcase 1 failed.\nExpected: -1\nGot: 340202021 -688437301 495983288 918092658 340202019 -688437302 -266327978 340202022 762311359 -844218617 \n987880501 -889763869 42998544 515439496 987880540 -889763876 -417322875 987880508 460321487 -944881891 \n987880531 -889763869 42998509 515439516 987880535 -889763871 -417322900 987880533 460321507 -944881896 \n926945795 -353155129 250368186 588656965 926945832 -353155136 -14866322 926945802 -29732670 -676577513",
+  "logs": [
+    {
+      "testcase": 1,
+      "input": "4 2\n1 8 \n7 3 \n2 8 \n7 5 \n3 10\n4 4 8 2 10 3 7 5 6 7 \n10 4 1 6 9 4 2 10 10 6 \n7 4 9 8 7 4 3 7 6 2",
+      "expected": "-1",
+      "output": "340202021 -688437301 495983288 918092658 340202019 -688437302 -266327978 340202022 762311359 -844218617 \n987880501 -889763869 42998544 515439496 987880540 -889763876 -417322875 987880508 460321487 -944881891 \n987880531 -889763869 42998509 515439516 987880535 -889763871 -417322900 987880533 460321507 -944881896 \n926945795 -353155129 250368186 588656965 926945832 -353155136 -14866322 926945802 -29732670 -676577513"
+    }
+  ]
+}

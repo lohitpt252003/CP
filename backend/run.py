@@ -111,5 +111,33 @@ def submit_code():
         "logs": logs
     })
 
+@app.route("/contests", methods=["GET"])
+def get_all_contests():
+    contest_dir = "data/contests"
+    contests = []
+    for fname in os.listdir(contest_dir):
+        if fname.endswith(".json"):
+            with open(os.path.join(contest_dir, fname)) as f:
+                data = json.load(f)
+                contests.append({
+                    "id": data["id"],
+                    "title": data["title"],
+                    "start_time": data["start_time"],
+                    "end_time": data["end_time"]
+                })
+    return jsonify(contests)
+
+
+@app.route("/contest/<int:id>", methods=["GET"])
+def get_contest_by_id(id):
+    path = f"data/contests/{id}.json"
+    if not os.path.exists(path):
+        return jsonify({"error": "Contest not found"}), 404
+    with open(path) as f:
+        contest = json.load(f)
+    return jsonify(contest)
+
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

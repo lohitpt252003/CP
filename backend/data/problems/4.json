@@ -1,9 +1,9 @@
 {
   "problem_id": "4",
   "title": "Longest Palindromic Subsequence",
-  "statement": "Given a string s, find the length of the longest palindromic subsequence in s. A subsequence is a sequence that can be derived from the string by deleting some or no characters without changing the order of the remaining characters.\n\nNote: A subsequence is different from a substring — characters need not be consecutive.",
+  "statement": "Given a string s, find the length of the longest palindromic subsequence in s. A subsequence is a sequence that can be derived from the string by deleting some or no characters without changing the order of the remaining characters.\n\nNote: A subsequence is different from a substring - characters need not be consecutive.",
   "input_format": "The first line contains a single string s consisting of lowercase English letters.",
-  "output_format": "Print a single integer — the length of the longest palindromic subsequence.",
+  "output_format": "Print a single integer - the length of the longest palindromic subsequence.",
   "constraints": {
     "1 <= |s| <= 1000": true,
     "s consists only of lowercase English letters": true

@@ -1,0 +1,8 @@
+{
+  "id": 1,
+  "title": "Matrix Mastery Contest",
+  "description": "Solve challenging matrix problems",
+  "problems": [5, 6, 7],
+  "start_time": "2025-06-08T10:00:00Z",
+  "end_time": "2025-06-08T13:00:00Z"
+}

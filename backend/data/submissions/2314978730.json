@@ -1,0 +1,101 @@
+{
+  "submission_id": 2314978730,
+  "problem_id": 1,
+  "user_id": 2,
+  "language": "cpp",
+  "code": "#include<iostream>\n#include<vector>\n#include <algorithm>\n\nusing namespace std;\n\nint f(int i, int amount, vector<int> a, vector<vector<int> > dp){\n    if(i == a.size()){\n        if(amount == 0) return 0;\n        else return 1e9;\n    }\n    if(dp[i][amount] != (int)1e9) return dp[i][amount];\n\n\n    int p = (amount>=a[i])? (1 + f(i, amount - a[i], a, dp)) : 1e9;\n    // int q = (amount >= a[i])? (1 + f(i + 1, amount - a[i], a)) : 1e9;\n    int r = f(i + 1, amount, a, dp);\n\n    return min(min(p, (int) 1e9), r);\n}\n\nint main(){\n        int n;\n    cin>>n;\n\n    int amount;\n    cin>>amount;\n\n    vector<int> arr(n);\n    for(int i = 0; i<n; i++){\n        int x;\n        cin>>x;\n        arr[i] = x;\n    }\n    vector<vector<int> > dp(n+1, vector<int> ((amount + 1), (int)1e9));\n\n\n    for(int i = n; i>=0; i--){\n        for(int j = 0; j<=amount; j++){\n            if(i == n){\n                if(j == 0) dp[i][j] = 0;\n                else dp[i][j] = 1e9;\n            }\n            else {\n                 int p = (j>=arr[i])? (1 + dp[i][j - arr[i]]) : 1e9;\n                // int q = (amount >= a[i])? (1 + f(i + 1, amount - a[i], a)) : 1e9;\n                int r = dp[i + 1][j];\n                dp[i][j] = min(p,r);\n\n\n            }\n        }\n    }\n    \n    int ans = dp[0][amount];\n    if(ans == (int)1e9) cout<<'-1';\n    else cout<<ans;\n\n    return 0;\n}",
+  "status": "Wrong Answer",
+  "message": "Testcase 15 failed.\nExpected: -1\nGot: 11569",
+  "logs": [
+    {
+      "testcase": 1,
+      "input": "2 30\n1 8",
+      "expected": "9",
+      "output": "9"
+    },
+    {
+      "testcase": 2,
+      "input": "6 19\n1 2 4 9 1 9",
+      "expected": "3",
+      "output": "3"
+    },
+    {
+      "testcase": 3,
+      "input": "59 194\n7 2 10 4 4 8 2 10 9 2 7 6 3 10 7 9 5 8 2 9 1 6 6 2 3 8 2 1 10 4 6 2 4 3 9 5 5 1 9 6 1 10 5 1 3 8 7 6 8 6 5 6 2 6 7 4 10 4 5",
+      "expected": "20",
+      "output": "20"
+    },
+    {
+      "testcase": 4,
+      "input": "96 143\n9 2 1 4 8 3 1 3 9 3 2 7 10 5 7 8 10 4 5 3 9 4 5 6 3 4 6 1 8 4 5 6 8 3 9 4 6 6 2 7 8 6 5 7 6 1 5 3 1 4 1 1 8 9 8 7 4 6 8 3 4 3 4 1 1 5 5 5 10 7 8 8 2 5 4 10 5 3 6 10 8 1 8 4 1 4 6 1 6 6 6 1 5 5 8 3",
+      "expected": "15",
+      "output": "15"
+    },
+    {
+      "testcase": 5,
+      "input": "9 780\n4 4 7 4 7 10 5 9 10",
+      "expected": "78",
+      "output": "78"
+    },
+    {
+      "testcase": 6,
+      "input": "2 603\n1 2",
+      "expected": "302",
+      "output": "302"
+    },
+    {
+      "testcase": 7,
+      "input": "32 584\n5 2 7 1 2 9 9 2 6 1 5 3 5 5 7 3 5 2 10 7 9 1 2 4 4 6 2 6 6 9 10 5",
+      "expected": "59",
+      "output": "59"
+    },
+    {
+      "testcase": 8,
+      "input": "19 691\n10 7 6 6 7 2 2 4 10 3 1 1 4 6 7 8 2 4 1",
+      "expected": "70",
+      "output": "70"
+    },
+    {
+      "testcase": 9,
+      "input": "5 107\n10 9 5 2 3",
+      "expected": "11",
+      "output": "11"
+    },
+    {
+      "testcase": 10,
+      "input": "62 301\n8 7 10 6 6 7 3 5 7 5 10 7 8 7 6 7 8 4 10 1 5 2 2 3 2 7 8 1 4 9 3 5 3 4 8 1 6 1 1 1 10 3 5 3 1 5 10 8 10 4 5 9 5 1 2 4 2 9 8 8 2 6",
+      "expected": "31",
+      "output": "31"
+    },
+    {
+      "testcase": 11,
+      "input": "19 109\n5 6 5 6 3 9 1 6 9 6 5 7 4 3 5 1 6 7 5",
+      "expected": "13",
+      "output": "13"
+    },
+    {
+      "testcase": 12,
+      "input": "5 44\n3 8 1 7 9",
+      "expected": "5",
+      "output": "5"
+    },
+    {
+      "testcase": 13,
+      "input": "3 375\n9 6 5",
+      "expected": "42",
+      "output": "42"
+    },
+    {
+      "testcase": 14,
+      "input": "26 9981\n7699 9550 5369 1682 3081 6099 7284 7750 4767 3414 1630 82 641 7938 8563 5056 2491 1473 6043 2955 2305 6842 3309 3775 1647 635",
+      "expected": "3",
+      "output": "3"
+    },
+    {
+      "testcase": 15,
+      "input": "30 4895\n5905 6861 7516 2488 6619 9443 181 1234 1077 1147 999 3194 2380 5731 4044 7752 9230 8813 3834 3608 1746 7128 6984 3012 7737 1022 4562 2632 8883 1263",
+      "expected": "-1",
+      "output": "11569"
+    }
+  ]
+}

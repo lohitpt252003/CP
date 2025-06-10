@@ -1,0 +1,10 @@
+{
+  "submission_id": 1461934922,
+  "problem_id": 5,
+  "user_id": 2,
+  "language": "cpp",
+  "code": "#include<iostream>\n#include<vector>\nusing namespace std;\n\nvector<vector<long long int> > multiply(vector<vector<int> > a, vector<vector<int> > b , long long mod){\n    vector<vector<long long int> > c(a.size(), vector<long long int> (b.back().size()));\n    for(int i = 0; i<a.size(); i++){\n        for(int j = 0; j<b.back().size(); j++){\n            c[i][j] = 0;\n            for(int k = 0; k<b.size(); k++){\n                c[i][j] += (a[i][k] * b[k][j]) % mod; \n            }\n        }\n    }\n    return c;\n}\n\n\n\n\n\n\nint main(){\n    int a,b;\n    cin>>a>>b;\n    vector<vector<int> > ab (a, vector<int>(b));\n    for(int i = 0; i<a; i++){\n        for(int j = 0; j<b; j++){\n            int x;\n            cin>>x;\n            ab[i][j] = x;\n\n        }\n    }\n    int c,d;\n    cin>>c>>d;\n    vector<vector<int> > cd (c, vector<int>(d));\n    for(int i = 0; i<c; i++){\n        for(int j = 0; j<d; j++){\n            int x;\n            cin>>x;\n            cd[i][j] = x;\n\n        }\n    }\n\n    vector<vector<long long int> > ans ;\n    ans =  multiply(ab, cd, 1e9+7);\n\n    for(int i = 0; i<ab.size(); i++){\n        for(int j = 0; j<cd.back().size(); j++){\n            cout<< ans[i][j]<<' ';\n            \n        }\n        cout<<endl;\n\n    }\n    \n\n\n\n    return 0;\n}",
+  "status": "Wrong Answer",
+  "message": "Testcases directory for problem 5 not found.",
+  "logs": []
+}

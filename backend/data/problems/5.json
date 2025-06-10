@@ -1,0 +1,27 @@
+{
+  "problem_id": 5,
+  "title": "Matrix Multiplication",
+  "statement": "You are given two matrices mat1 of dimensions a X b and mat2 of dimensions c X d. Multiply them if they are compatible. Otherwise, print -1.\n\nThe output matrix should be the result of mat1 X mat2 modulo 1e9 + 7.\nEach element of mat1 and mat2 will be a non-negative integer.",
+  "input_format": "The first line contains two integers a and b.\nThen a lines follow, each with b integers: the matrix mat1.\nThe next line contains two integers c and d.\nThen c lines follow, each with d integers: the matrix mat2.",
+  "output_format": "If matrix multiplication is not possible, print -1.\nOtherwise, print the resulting matrix, with each element modulo 1e9 + 7.\nSee the sample testcases for better understanding.",
+  "constraints": {
+    "1 <= a <= 100": true,
+    "1 <= b <= 100": true,
+    "1 <= c <= 100": true,
+    "1 <= d <= 100": true,
+    "0 <= mat1[i][j] <= 1e9": true,
+    "0 <= mat2[i][j] <= 1e9": true
+  },
+  "time_limit": "1s",
+  "sample_testcases": [
+    {
+      "input": "2 3\n1 2 3\n4 5 6\n3 2\n7 8\n9 10\n11 12\n",
+      "output": "58 64\n139 154"
+    },
+    {
+      "input": "2 3\n1 0 0\n0 1 0\n2 2\n1 2\n3 4\n",
+      "output": "-1"
+    }
+  ],
+  "tags": ["Matrix", "Modular Arithmetic", "Multiplication", "2D Array"]
+}

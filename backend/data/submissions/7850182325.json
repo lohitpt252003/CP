@@ -1,0 +1,17 @@
+{
+  "submission_id": 7850182325,
+  "problem_id": 1,
+  "user_id": 2,
+  "language": "cpp",
+  "code": "#include<iostream>\n#include<vector>\n#include <algorithm>\n\nusing namespace std;\n\nint f(int i, int amount, vector<int> a, vector<vector<int> > dp){\n    if(i == a.size()){\n        if(amount == 0) return 0;\n        else return 1e9;\n    }\n    if(dp[i][amount] != INT_MAX) return dp[i][amount];\n\n\n    int p = (amount>=a[i])? (1 + f(i, amount - a[i], a, dp)) : 1e9;\n    // int q = (amount >= a[i])? (1 + f(i + 1, amount - a[i], a)) : 1e9;\n    int r = f(i + 1, amount, a, dp);\n\n    return min(min(p, (int) 1e9), r);\n}\n\nint main(){\n        int n;\n    cin>>n;\n\n    int amount;\n    cin>>amount;\n\n    vector<int> arr(n);\n    for(int i = 0; i<n; i++){\n        int x;\n        cin>>x;\n        arr[i] = x;\n    }\n    vector<vector<int> > dp(n+1, vector<int> ((amount + 1), INT_MAX));\n\n\n    for(int i = n; i>=0; i--){\n        for(int j = 0; j<=amount; j++){\n            if(i == n){\n                if(j == 0) dp[i][j] = 0;\n                else dp[i][j] = 1e9;\n            }\n            else {\n                 int p = (amount>=arr[i])? (1 + dp[i][j - arr[i]]) : 1e9;\n                // int q = (amount >= a[i])? (1 + f(i + 1, amount - a[i], a)) : 1e9;\n                int r = dp[i + 1][j];\n                dp[i][j] = min(p,r);\n\n\n            }\n        }\n    }\n\n    int ans = dp[0][amount];\n    cout<<ans;\n\n    return 0;\n}",
+  "status": "Wrong Answer",
+  "message": "Testcase 1 failed.\nExpected: 9\nGot: Compilation error:\nC:\\Users\\lohit\\AppData\\Local\\Temp\\tmpcbldpwqi\\main.cpp: In function 'int f(int, int, std::vector<int>, std::vector<std::vector<int> >)':\nC:\\Users\\lohit\\AppData\\Local\\Temp\\tmpcbldpwqi\\main.cpp:12:25: error: 'INT_MAX' was not declared in this scope\n     if(dp[i][amount] != INT_MAX) return dp[i][amount];\n                         ^~~~~~~\nC:\\Users\\lohit\\AppData\\Local\\Temp\\tmpcbldpwqi\\main.cpp: In function 'int main()':\nC:\\Users\\lohit\\AppData\\Local\\Temp\\tmpcbldpwqi\\main.cpp:35:61: error: 'INT_MAX' was not declared in this scope\n     vector<vector<int> > dp(n+1, vector<int> ((amount + 1), INT_MAX));\n                                                             ^~~~~~~\n",
+  "logs": [
+    {
+      "testcase": 1,
+      "input": "2 30\n1 8",
+      "expected": "9",
+      "output": "Compilation error:\nC:\\Users\\lohit\\AppData\\Local\\Temp\\tmpcbldpwqi\\main.cpp: In function 'int f(int, int, std::vector<int>, std::vector<std::vector<int> >)':\nC:\\Users\\lohit\\AppData\\Local\\Temp\\tmpcbldpwqi\\main.cpp:12:25: error: 'INT_MAX' was not declared in this scope\n     if(dp[i][amount] != INT_MAX) return dp[i][amount];\n                         ^~~~~~~\nC:\\Users\\lohit\\AppData\\Local\\Temp\\tmpcbldpwqi\\main.cpp: In function 'int main()':\nC:\\Users\\lohit\\AppData\\Local\\Temp\\tmpcbldpwqi\\main.cpp:35:61: error: 'INT_MAX' was not declared in this scope\n     vector<vector<int> > dp(n+1, vector<int> ((amount + 1), INT_MAX));\n                                                             ^~~~~~~\n"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "submission_id": 2183739341,
+  "problem_id": 3,
+  "user_id": 2,
+  "language": "cpp",
+  "code": "#include<iostream>\n#include<vector>\n#include <algorithm>\n\nusing namespace std;\n\nvector<int> takeArrayInput() {\n    int n;\n    cin >> n;\n    vector<int> arr(n);\n    for (int &it : arr) cin >> it;\n\n    return arr;\n}\n\nint f(int i, vector<int> arr, vector<int> &dp) {\n    if (i == 0) return arr[0];\n    if(dp[i] != INT_MIN) return dp[i];\n\n    int p = arr[i];\n    int np = arr[i] + f(i - 1, arr, dp);\n\n    return dp[i] = max(p, np);\n}\n\nint main() {\n    auto arr = takeArrayInput();\n    int mx = INT_MIN;\n    vector<int> dp(arr.size()+1, INT_MIN);\n\n    for(int i = 0; i<arr.size(); i++){\n        if(i == 0) dp[i] = arr[0];\n        else {\n            int p = arr[i];\n            int np = arr[i] + dp[i-1];\n            dp[i] = max(p,np);\n        }\n\n    }\n\n\n    for (int i = 0; i < arr.size(); i++) mx = max(mx, dp[i]);\n    \n    cout << mx;\n}",
+  "status": "Wrong Answer",
+  "message": "Testcase 1 failed.\nExpected: 364\nGot: Compilation error:\nC:\\Users\\lohit\\AppData\\Local\\Temp\\tmpl2nm09nf\\main.cpp: In function 'int f(int, std::vector<int>, std::vector<int>&)':\nC:\\Users\\lohit\\AppData\\Local\\Temp\\tmpl2nm09nf\\main.cpp:18:17: error: 'INT_MIN' was not declared in this scope\n     if(dp[i] != INT_MIN) return dp[i];\n                 ^~~~~~~\nC:\\Users\\lohit\\AppData\\Local\\Temp\\tmpl2nm09nf\\main.cpp: In function 'int main()':\nC:\\Users\\lohit\\AppData\\Local\\Temp\\tmpl2nm09nf\\main.cpp:28:14: error: 'INT_MIN' was not declared in this scope\n     int mx = INT_MIN;\n              ^~~~~~~\n",
+  "logs": [
+    {
+      "testcase": 1,
+      "input": "12\n35 16 31 19 10 78 45 13 59 14 17 27",
+      "expected": "364",
+      "output": "Compilation error:\nC:\\Users\\lohit\\AppData\\Local\\Temp\\tmpl2nm09nf\\main.cpp: In function 'int f(int, std::vector<int>, std::vector<int>&)':\nC:\\Users\\lohit\\AppData\\Local\\Temp\\tmpl2nm09nf\\main.cpp:18:17: error: 'INT_MIN' was not declared in this scope\n     if(dp[i] != INT_MIN) return dp[i];\n                 ^~~~~~~\nC:\\Users\\lohit\\AppData\\Local\\Temp\\tmpl2nm09nf\\main.cpp: In function 'int main()':\nC:\\Users\\lohit\\AppData\\Local\\Temp\\tmpl2nm09nf\\main.cpp:28:14: error: 'INT_MIN' was not declared in this scope\n     int mx = INT_MIN;\n              ^~~~~~~\n"
+    }
+  ]
+}

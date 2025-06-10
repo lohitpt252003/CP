@@ -12,11 +12,11 @@
   "sample_testcases": [
     {
       "input": "4",
-      "output": "4"
+      "output": "6"
     },
     {
       "input": "5",
-      "output": "1"
+      "output": "13"
     },
     {
       "input": "10",

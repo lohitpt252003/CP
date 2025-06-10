@@ -1,0 +1,17 @@
+{
+  "submission_id": 2960626141,
+  "problem_id": 1,
+  "user_id": 1,
+  "language": "cpp",
+  "code": "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int N, amount;\n    cin >> N;\n\n    vector<int> coins(N);\n    for (int i = 0; i < N; ++i) {\n        cin >> coins[i];\n    }\n\n    cin >> amount;\n\n    // Initialize dp array with a large number (amount+1)\n    vector<int> dp(amount + 1, amount + 1);\n    dp[0] = 0; // Base case\n\n    // Fill dp array\n    for (int coin : coins) {\n        for (int i = coin; i <= amount; ++i) {\n            dp[i] = min(dp[i], dp[i - coin] + 1);\n        }\n    }\n\n    // Output the result\n    if (dp[amount] > amount) {\n        cout << -1 << endl;\n    } else {\n        cout << dp[amount] << endl;\n    }\n\n    return 0;\n}\n",
+  "status": "Wrong Answer",
+  "message": "Testcase 1 failed.\nExpected: 9\nGot: 8",
+  "logs": [
+    {
+      "testcase": 1,
+      "input": "2 30\n1 8",
+      "expected": "9",
+      "output": "8"
+    }
+  ]
+}
