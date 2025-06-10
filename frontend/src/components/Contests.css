@@ -1,0 +1,104 @@
+/* Contests.css */
+
+/* Background gradient animation */
+@keyframes contestsBg {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.Contests-Container {
+  padding: 30px;
+  background: linear-gradient(270deg, #6a11cb, #2575fc, #6a11cb);
+  background-size: 600% 600%;
+  animation: contestsBg 15s ease infinite;
+  min-height: 100vh;
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Page title with pop-in */
+@keyframes titlePop {
+  0%   { transform: scale(0.8); opacity: 0; }
+  60%  { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); }
+}
+.Contests-Title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 20px;
+  animation: titlePop 1s ease forwards;
+}
+
+/* List fade-in items */
+@keyframes itemFade {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.Contests-List {
+  list-style: none;
+  padding: 0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.Contests-Item {
+  background: rgba(255,255,255,0.1);
+  margin: 10px 0;
+  padding: 15px 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: itemFade 0.8s ease both;
+}
+.Contests-Item:nth-child(odd) {
+  animation-delay: 0.2s;
+}
+.Contests-Item:nth-child(even) {
+  animation-delay: 0.4s;
+}
+
+/* Link hover glow */
+.Contests-Link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  position: relative;
+  transition: color 0.3s ease;
+}
+.Contests-Link::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -4px;
+  width: 100%; height: 2px;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.Contests-Link:hover {
+  color: #ffeb3b;
+}
+.Contests-Link:hover::after {
+  transform: scaleX(1);
+}
+
+/* Time stamp styling */
+.Contests-Time {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  font-style: italic;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .Contests-Title {
+    font-size: 2rem;
+  }
+  .Contests-Item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .Contests-Time {
+    margin-top: 8px;
+  }
+}

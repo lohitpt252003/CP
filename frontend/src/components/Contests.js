@@ -1,9 +1,11 @@
+// Contests.jsx
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Header from './Header';
+import './Contests.css';
 
-function Contests() {
+export default function Contests() {
   const [contests, setContests] = useState([]);
 
   useEffect(() => {
@@ -14,18 +16,21 @@ function Contests() {
   }, []);
 
   return (
-    <div>
+    <div className="Contests-Container">
       <Header />
-      <h2>Available Contests</h2>
-      <ul>
+      <h2 className="Contests-Title">Available Contests</h2>
+      <ul className="Contests-List">
         {contests.map(c => (
-          <li key={c.id}>
-            <Link to={`/contest/${c.id}`}>{c.title}</Link> ({c.start_time} → {c.end_time})
+          <li key={c.id} className="Contests-Item">
+            <Link to={`/contest/${c.id}`} className="Contests-Link">
+              {c.title}
+            </Link>
+            <span className="Contests-Time">
+              {new Date(c.start_time).toLocaleString()} → {new Date(c.end_time).toLocaleString()}
+            </span>
           </li>
         ))}
       </ul>
     </div>
   );
 }
-
-export default Contests;

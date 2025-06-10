@@ -1,0 +1,128 @@
+/* ContestDetails.css */
+
+/* Background gradient animation */
+@keyframes detailsBg {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.ContestDetails-Container {
+  padding: 30px;
+  background: linear-gradient(270deg, #ff9a9e, #fecfef, #ff9a9e);
+  background-size: 600% 600%;
+  animation: detailsBg 18s ease infinite;
+  min-height: 100vh;
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Loading state */
+.ContestDetails-Loading {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 2rem;
+  animation: fadeIn 1s ease both;
+}
+
+/* Title with shimmer */
+@keyframes shimmer {
+  0%   { background-position: -200px 0; }
+  100% { background-position: 200px 0; }
+}
+.ContestDetails-Title {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  background: linear-gradient(90deg, #fff, rgba(255,255,255,0.6), #fff);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 2.5s infinite;
+}
+
+/* Description fade-in */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.ContestDetails-Description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  animation: fadeIn 1s ease both;
+}
+
+/* Subheading pop */
+@keyframes popIn {
+  0%   { transform: scale(0.8); opacity: 0; }
+  60%  { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); }
+}
+.ContestDetails-Subheading {
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+  animation: popIn 0.8s ease both;
+}
+
+/* Problems list */
+.ContestDetails-List {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.ContestDetails-Item {
+  background: rgba(255,255,255,0.2);
+  margin: 5px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  animation: pulse 2s ease infinite;
+}
+@keyframes pulse {
+  0%,100% { transform: scale(1); }
+  50%     { transform: scale(1.05); }
+}
+
+/* Problem link hover */
+.ContestDetails-Link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  position: relative;
+  transition: color 0.3s ease;
+}
+.ContestDetails-Link::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -4px;
+  width: 100%; height: 2px;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.ContestDetails-Link:hover {
+  color: #ffe066;
+}
+.ContestDetails-Link:hover::after {
+  transform: scaleX(1);
+}
+
+/* Times section */
+.ContestDetails-Times {
+  margin-top: 20px;
+  animation: fadeIn 1s ease both;
+}
+.ContestDetails-Label {
+  font-weight: 700;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .ContestDetails-Title {
+    font-size: 2rem;
+  }
+  .ContestDetails-Item {
+    flex: 1 1 100%;
+  }
+}

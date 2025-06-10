@@ -1,10 +1,11 @@
+// ContestDetails.jsx
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
-// import Header
 import Header from './Header';
+import './ContestDetails.css';
 
-function ContestDetails() {
+export default function ContestDetails() {
   const { id } = useParams();
   const [contest, setContest] = useState(null);
 
@@ -15,23 +16,35 @@ function ContestDetails() {
       .catch(err => console.error(err));
   }, [id]);
 
-  if (!contest) return <p>Loading...</p>;
+  if (!contest) return <p className="ContestDetails-Loading">Loading...</p>;
 
   return (
-    <div>
+    <div className="ContestDetails-Container">
       <Header />
-      <h2>{contest.title}</h2>
-      <p>{contest.description}</p>
-      <h3>Problems:</h3>
-      <ul>
+      <h2 className="ContestDetails-Title">{contest.title}</h2>
+      <p className="ContestDetails-Description">{contest.description}</p>
+
+      <h3 className="ContestDetails-Subheading">Problems:</h3>
+      <ul className="ContestDetails-List">
         {contest.problems.map(pid => (
-          <li key={pid}><Link to={`/problem/${pid}`}>Problem {pid}</Link></li>
+          <li key={pid} className="ContestDetails-Item">
+            <Link to={`/problem/${pid}`} className="ContestDetails-Link">
+              Problem {pid}
+            </Link>
+          </li>
         ))}
       </ul>
-      <p><strong>Start:</strong> {contest.start_time}</p>
-      <p><strong>End:</strong> {contest.end_time}</p>
+
+      <div className="ContestDetails-Times">
+        <p>
+          <strong className="ContestDetails-Label">Start:</strong>{" "}
+          {new Date(contest.start_time).toLocaleString()}
+        </p>
+        <p>
+          <strong className="ContestDetails-Label">End:</strong>{" "}
+          {new Date(contest.end_time).toLocaleString()}
+        </p>
+      </div>
     </div>
   );
 }
-
-export default ContestDetails;
